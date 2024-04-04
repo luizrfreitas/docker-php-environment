@@ -1,0 +1,15 @@
+version: "3"
+
+services:
+
+  app:
+    container_name: app
+    build:
+      dockerfile: ./.docker/php/Dockerfile.dev
+    ports:
+      - "9000:9000"
+    volumes:
+      - ./:/var/www/html/app
+    working_dir: /var/www/html/app
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
