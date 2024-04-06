@@ -8,7 +8,21 @@ services:
     build:
       dockerfile: ./.docker/php/Dockerfile.prod
     ports:
-      - "8000:8000"
+      - "${APP_PORTS}"
     volumes:
       - ./:/var/www/html/app
     working_dir: /var/www/html/app
+
+  db:
+    tty: true
+    image: mysql:latest
+    container_name: db
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+    ports:
+      - "${DB_PORT}:${DB_PORT}"
+    volumes:
+      - ./.docker/db:/var/lib/mysql

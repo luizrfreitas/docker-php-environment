@@ -8,7 +8,7 @@ services:
     build:
       dockerfile: ./.docker/php/Dockerfile.dev
     ports:
-      - "8000:8000"
+      - "${APP_PORTS}"
     volumes:
       - ./:/var/www/html/app
     working_dir: /var/www/html/app

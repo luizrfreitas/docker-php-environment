@@ -1,0 +1,8 @@
+# ENV
+.env
+
+# DOCKER
+.docker/db
+
+# COMPOSER
+/vendor/
