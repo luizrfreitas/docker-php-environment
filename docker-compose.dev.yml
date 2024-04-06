@@ -4,10 +4,11 @@ services:
 
   app:
     container_name: app
+    tty: true
     build:
       dockerfile: ./.docker/php/Dockerfile.dev
     ports:
-      - "9000:9000"
+      - "8000:8000"
     volumes:
       - ./:/var/www/html/app
     working_dir: /var/www/html/app
