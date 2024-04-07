@@ -7,11 +7,14 @@ This repository provides a Docker-based PHP environment that can be used as a te
 ```
 .
 ├── .docker/
-│   └── php/
-│       ├── xdebug/
-│       │   └── 99-xdebug.ini
-│       ├── Dockerfile.dev
-│       └── Dockerfile.prod
+│   ├── php/
+│   │   ├── xdebug/
+│   │   │   └── 99-xdebug.ini
+│   │   ├── Dockerfile.dev
+│   │   └── Dockerfile.prod
+│   └── web/
+│       └── conf.d/
+│           └── default.conf
 ├── db/
 │   └── migrations
 ├── tests/
@@ -42,8 +45,26 @@ The Docker images include Composer. Additionally, the `Dockerfile.dev` installs 
 
 ## Docker Containers
 
-There's two containers, `app`, representing the PHP, Composer, and Xdebug installation, and `db`, a MySQL container.
+The template includes a variety of containers to support different aspects of your project.
+
+### Production Environment
+
+- **`app`**: PHP 8.3 with Composer.
+
+- **`db`**: MySQL latest version.
+
+- **`web`**: Nginx latest version. Volume with `conf.d` config file uses default port for app.
+
+- **`cache`**: Redis, bookworm version.
+
+### Development Environment
+
+- **`app` with Xdebug**: Same as production environment but installs Xdebug.
+
+### Testing Environment
+
+- **`db_test`**: MySQL with TCP port configuration.
 
 ## Environment Variables
 
-An example `.env` file is provided in `.env.example`. Modify it according to your project's requirements.
+An example `.env` file is provided in `.env.example`. Modify it according to your project's requirements. Makefile offers a default configuration for `.env`.

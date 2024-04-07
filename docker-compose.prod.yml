@@ -2,6 +2,14 @@ version: "3"
 
 services:
 
+  # web:
+  #   image: nginx:latest
+  #   container_name: web
+  #   ports:
+  #     - "${WEB_PORT}:${WEB_PORT}"
+  #   volumes:
+  #     - ./.docker/web/conf.d/default.conf:/etc/nginx/conf.d/default.conf
+
   app:
     container_name: app
     tty: true
@@ -26,3 +34,11 @@ services:
       - "${DB_PORT}:${DB_PORT}"
     volumes:
       - ./.docker/db:/var/lib/mysql
+
+  # cache:
+  #   image: redis:bookworm
+  #   container_name: cache
+  #   tty: true
+  #   ports:
+  #     - "${CACHE_PORT}:${CACHE_PORT}"
+  #   restart: always
