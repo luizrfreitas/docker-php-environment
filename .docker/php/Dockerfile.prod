@@ -1,7 +1,9 @@
-FROM php:8.3
+FROM php:8.3.3-fpm
 
+# INSTALLING PHP EXTENTIONS
 RUN docker-php-ext-install pdo pdo_mysql
 
+# INSTALLING PACKAGES
 RUN apt-get update && apt-get install -y \
     git \
     curl \
@@ -14,4 +16,15 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
     && apt-get clean
 
+# ADDING COMPOSER
 COPY --from=composer/composer:latest-bin /composer /usr/bin/composer
+
+# CREATE APP DIRECTORY
+RUN mkdir -p /var/www/html/app
+
+# COPYPING FILES
+COPY ./../../* /var/www/html/app
+
+# INSTALLING COMPOSER
+WORKDIR /var/www/html/app
+RUN composer install
