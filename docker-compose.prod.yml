@@ -40,7 +40,7 @@ services:
       MYSQL_USER: ${DB_USER}
       MYSQL_PASSWORD: ${DB_ROOT_PASSWORD}
     volumes:
-      - ./.docker/db:/var/lib/mysql
+      - ./.docker/db/mysql:/var/lib/mysql
 
   # cache:
   #   image: redis:bookworm

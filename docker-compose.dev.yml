@@ -28,4 +28,4 @@ services:
   #   ports:
   #     - "${DB_PORT_TEST}:${DB_PORT_TEST}"
   #   volumes:
-  #     - ./.docker/db_test:/var/lib/mysql
+  #     - ./.docker/db_test/mysql:/var/lib/mysql
