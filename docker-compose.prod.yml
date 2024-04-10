@@ -32,15 +32,19 @@ services:
   db:
     image: mysql:latest
     container_name: db
+    tty: true
+    restart: always
     ports:
       - "${DB_PORT}:${DB_PORT}"
     environment:
-      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
-      MYSQL_DATABASE: ${DB_DATABASE}
-      MYSQL_USER: ${DB_USER}
-      MYSQL_PASSWORD: ${DB_ROOT_PASSWORD}
+      - MYSQL_ROOT_PASSWORD=${DB_ROOT_PASSWORD}
+      - MYSQL_DATABASE=${DB_DATABASE}
+      - MYSQL_USER=${DB_USER}
+      - MYSQL_PASSWORD=${DB_PASSWORD}
     volumes:
       - ./.docker/db/mysql:/var/lib/mysql
+    networks:
+      - app_network
 
   # cache:
   #   image: redis:bookworm
