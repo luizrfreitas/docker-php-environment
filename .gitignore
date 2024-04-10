@@ -2,8 +2,7 @@
 .env
 
 # DOCKER
-.docker/db
-.docker/db_test
+
 
 # COMPOSER
 /vendor/
